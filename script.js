@@ -159,7 +159,7 @@ const packageThemes = {
   },
   ultimate: {
     title: 'Parisian Duo Package Themes',
-    desc: '$1,450 for up to 12 kids — Choose 2 Parisian Room activities:',
+    desc: '$1,480 for up to 12 kids — Choose 2 Parisian Room activities:',
     themes: [
       allThemes['deluxe-spa'], allThemes['cupcake'], allThemes['gel-cream'],
       allThemes['pet-adoption'], allThemes['g-clay'], allThemes['candle-art'],
@@ -168,7 +168,7 @@ const packageThemes = {
   },
   premium: {
     title: 'Premium Dual-Room Package',
-    desc: '$1,850 for up to 12 kids — Choose 1 from each group:',
+    desc: '$1,880 for up to 12 kids — Choose 1 from each group:',
     groupA: {
       label: 'Activity 1 — Parisian Room',
       themes: [
@@ -344,6 +344,11 @@ function onPackageChange() {
       '<div class="theme-select-group">' +
       '<label>Activity 2 — Disco Room (choose 1)</label>' +
       '<div class="theme-chips">' + buildChips(discoThemes, 'groupB') + '</div>' +
+      '</div>';
+  } else if (pkg === 'outside') {
+    container.innerHTML =
+      '<div class="theme-select-group">' +
+      '<p style="color: var(--color-text-light); font-size: 0.92rem;">Please describe your venue and preferences in the Special Requests field below and we\'ll tailor a package for you.</p>' +
       '</div>';
   }
 }
