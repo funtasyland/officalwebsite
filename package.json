@@ -1,0 +1,25 @@
+{
+  "name": "officalwebsite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/funtasyland/officalwebsite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/funtasyland/officalwebsite/issues"
+  },
+  "homepage": "https://github.com/funtasyland/officalwebsite#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "nodemailer": "^8.0.5"
+  }
+}

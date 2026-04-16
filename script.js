@@ -409,36 +409,57 @@ function updateThemeInput() {
 function handleSubmit(e) {
   e.preventDefault();
   const form = e.target;
-  const data = new FormData(form);
-
-  const name = data.get('name') || '';
-  const phone = data.get('phone') || '';
-  const email = data.get('email') || '';
-  const date = data.get('date') || '';
-  const pkg = form.querySelector('#package option:checked').textContent || '';
-  const themes = data.get('themes') || 'None selected';
-  const message = data.get('message') || '';
-
-  const subject = encodeURIComponent('Booking Request from ' + name);
-  const body = encodeURIComponent(
-    'Name: ' + name + '\n' +
-    'Phone: ' + phone + '\n' +
-    'Email: ' + email + '\n' +
-    'Preferred Date: ' + date + '\n' +
-    'Package: ' + pkg + '\n' +
-    'Themes: ' + themes + '\n' +
-    'Special Requests: ' + message
-  );
-
-  window.location.href = 'mailto:funtasyland@hotmail.com?subject=' + subject + '&body=' + body;
-
-  // Show confirmation
   const btn = form.querySelector('button[type="submit"]');
   const originalText = btn.textContent;
-  btn.textContent = 'Thank you! We\'ll be in touch soon.';
+
+  // Add package display name to form data
+  const data = new FormData(form);
+  data.set('package', form.querySelector('#package option:checked').textContent || '');
+  if (!data.get('themes')) data.set('themes', 'None selected');
+
+  btn.textContent = 'Sending...';
   btn.disabled = true;
-  btn.style.background = '#6ab04c';
-  btn.style.borderColor = '#6ab04c';
+
+  fetch('/send-email', { method: 'POST', body: new URLSearchParams(data) })
+    .then(res => res.json())
+    .then(result => {
+      if (result.success) {
+        btn.textContent = 'Thank you! We\'ll be in touch soon.';
+        btn.style.background = '#6ab04c';
+        btn.style.borderColor = '#6ab04c';
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.disabled = false;
+          btn.style.background = '';
+          btn.style.borderColor = '';
+          form.reset();
+          document.getElementById('themeSelection').style.display = 'none';
+          document.getElementById('themeSelection').innerHTML = '';
+          selectedThemes = { groupA: [], groupB: [], flat: [] };
+        }, 4000);
+      } else {
+        btn.textContent = 'Failed to send. Please try again.';
+        btn.style.background = '#e74c3c';
+        btn.style.borderColor = '#e74c3c';
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.disabled = false;
+          btn.style.background = '';
+          btn.style.borderColor = '';
+        }, 3000);
+      }
+    })
+    .catch(() => {
+      btn.textContent = 'Failed to send. Please try again.';
+      btn.style.background = '#e74c3c';
+      btn.style.borderColor = '#e74c3c';
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.disabled = false;
+        btn.style.background = '';
+        btn.style.borderColor = '';
+      }, 3000);
+    });
 
   setTimeout(() => {
     btn.textContent = originalText;
