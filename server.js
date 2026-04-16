@@ -9,9 +9,9 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname)));
 app.use(express.urlencoded({ extended: true }));
 
-// Email transporter — uses Railway environment variables
+// Email transporter
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || 'smtp.gmail.com',
+  host: process.env.SMTP_HOST || 'smtp-mail.outlook.com',
   port: parseInt(process.env.SMTP_PORT || '587'),
   secure: false,
   auth: {
