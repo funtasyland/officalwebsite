@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Parties - Funtasy Party Studio</title>
+  <meta name="description"
+    content="Explore all 12 party  at Funtasy Party Studio in Gordon, Sydney. From Deluxe Spa to Disco Dance, find the perfect celebration for your child.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ---- Parties Page ---- */
+    .parties-hero {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 50%, var(--color-primary) 100%);
+      padding: 120px 0 60px;
+      text-align: center;
+    }
+
+    .parties-hero h1 {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .parties-hero p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .room-label {
+      text-align: center;
+      margin: 60px 0 32px;
+    }
+
+    .room-label h2 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--color-text);
+      margin-bottom: 8px;
+    }
+
+    .room-label p {
+      color: var(--color-text-light);
+      font-size: 0.95rem;
+    }
+
+    .room-label::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+      margin: 16px auto 0;
+    }
+
+    .theme-full {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      background: var(--color-white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 40px;
+    }
+
+    .theme-full.reverse {
+      direction: rtl;
+    }
+
+    .theme-full.reverse>* {
+      direction: ltr;
+    }
+
+    .theme-full-img {
+      min-height: 380px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .theme-full-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      inset: 0;
+      transition: transform 0.5s ease;
+    }
+
+    .theme-full:hover .theme-full-img img {
+      transform: scale(1.05);
+    }
+
+    .theme-full-body {
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .theme-full-icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+
+    .theme-full-body h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--color-text);
+      margin-bottom: 8px;
+    }
+
+    .theme-full-meta {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .theme-full-meta span {
+      font-size: 0.8rem;
+      color: var(--color-primary-dark);
+      background: var(--color-primary-light);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+    }
+
+    .theme-full-body>p {
+      color: var(--color-text-light);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .theme-includes h4 {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      color: var(--color-text);
+      margin-bottom: 10px;
+    }
+
+    .theme-includes ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .theme-includes li {
+      font-size: 0.85rem;
+      color: var(--color-text-light);
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .theme-includes li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--color-primary);
+    }
+
+    .theme-full-cta {
+      margin-top: 24px;
+    }
+
+    .parties-book-strip {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+      text-align: center;
+      padding: 48px 20px;
+    }
+
+    .parties-book-strip h2 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .parties-book-strip p {
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 24px;
+      font-size: 1rem;
+    }
+
+    .parties-book-strip .btn {
+      background: #fff;
+      color: var(--color-primary-dark);
+      font-weight: 700;
+    }
+
+    .parties-book-strip .btn:hover {
+      background: var(--color-bg);
+    }
+
+    @media (max-width: 768px) {
+      .parties-hero h1 {
+        font-size: 2rem;
+      }
+
+      .theme-full {
+        grid-template-columns: 1fr;
+      }
+
+      .theme-full.reverse {
+        direction: ltr;
+      }
+
+      .theme-full-img {
+        min-height: 250px;
+      }
+
+      .theme-full-body {
+        padding: 28px 24px;
+      }
+
+      .theme-includes ul {
+        grid-template-columns: 1fr;
+      }
+
+      .room-label h2 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="logo.png" alt="Funtasy - Your Dream Party" class="logo-img">
+      </a>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="nav">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="parties.html" class="active">Our Parties</a>
+        <a href="index.html#packages">Packages & Pricing</a>
+        <a href="index.html#venues">Venues</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="index.html#book" class="btn btn-nav">Book Now</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <div class="parties-hero">
+    <div class="container">
+      <h1>Our Parties </h1>
+      <p>12 uniquely curated experiences across two beautifully designed rooms. Every party is fully hosted and
+        stress-free.</p>
+    </div>
+  </div>
+
+  <!-- Parisian Room  -->
+  <section class="section">
+    <div class="container">
+      <div class="room-label">
+        <h2>Parisian Room</h2>
+        <p>Elegant French-inspired setting for pamper, spa and creative party experiences</p>
+      </div>
+
+      <div class="theme-full">
+        <div class="theme-full-img">
+          <img src="image/party(8).webp" alt="Deluxe Spa Pamper Party">
+        </div>
+        <div class="theme-full-body">
+          <div class="theme-full-icon">&#128134;</div>
+          <h3>Deluxe Spa Pamper Party</h3>
+          <div class="theme-full-meta">
+            <span>Parisian Room</span>
+            <span>Up to 30 kids</span>
+          </div>
+          <p>A luxurious kids spa birthday party in Gordon, Sydney, designed for children who love elegance, relaxation
+            and a touch of glamour.</p>
+          <div class="theme-includes">
+            <h4>What's Included</h4>
+            <ul>
+              <li>Private use of our beautifully styled Parisian room</li>
+              <li>Soft waffle bathrobes and hairbands for each guest</li>
+              <li>Warm bubble foot spa experience</li>
+              <li>Mini facial with child-safe organic clay mask</li>
+              <li>Glitter Bar with gems and holographic embellishments</li>
+              <li>Light makeup with shimmering eyeshadow and glitter eyeliner</li>
+              <li>Guided activities, music and interactive games</li>
+              <li>Styled table setup for food and cake celebration</li>
+              <li>Birthday cake ceremony</li>
+              <li>Digital invitations included for easy sharing</li>
+              <li>Premium party bags</li>
+            </ul>
+          </div>
+          <div class="theme-full-cta">
+            <a href="index.html#book" class="btn btn-primary">Book This Party</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-full reverse">
+        <div class="theme-full-img">
+          <img src="image/party (3).webp" alt="Cupcake Decorating Party">
+        </div>
+        <div class="theme-full-body">
+          <div class="theme-full-icon">&#129473;</div>
+          <h3>Cupcake Decorating Party</h3>
+          <div class="theme-full-meta">
+            <span>Parisian Room</span>
+            <span>Up to 30 kids</span>
+          </div>
+          <p>A fun and creative kids cupcake decorating party in Sydney's North Shore, perfect for hands-on learning and
+            sweet treats.</p>
+          <div class="theme-includes">
+            <h4>What's Included</h4>
+            <ul>
+              <li>Chef hats and aprons for all guests</li>
+              <li>Cupcake decorating experience with coloured icing</li>
+              <li>Wide selection of sprinkles, lollies and edible decorations</li>
+              <li>Creative freedom to design personalised cupcakes</li>
+              <li>Take-home patisserie box</li>
+              <li>Beautifully styled decorating tables</li>
+              <li>Interactive games and activities</li>
+              <li>Birthday cake celebration</li>
+              <li>Digital invitations included for easy sharing</li>
+              <li>Premium party bags</li>
+            </ul>
+          </div>
+          <div class="theme-full-cta">
+            <a href="index.html#book" class="btn btn-primary">Book This Party</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-full">
+        <div class="theme-full-img">
+          <img src="image/party (1).webp" alt="Gel Cream Decoration Party">
+        </div>
+        <div class="theme-full-body">
+          <div class="theme-full-icon">&#129524;</div>
+          <h3>Gel Cream Decoration Party</h3>
+          <div class="theme-full-meta">
+            <span>Parisian Room</span>
+            <span>Up to 30 kids</span>
+          </div>
+          <p>A trending and creative DIY craft birthday party in Gordon, loved by children who enjoy making personalised
+            accessories.</p>
+          <div class="theme-includes">
+            <h4>What's Included</h4>
+            <ul>
+              <li>Step-by-step guided gel cream workshop</li>
+              <li>Create unique accessories and decorations</li>
+              <li>Wide selection of beads, pearls, glitter and toppings</li>
+              <li>Aprons and gloves provided for all guests</li>
+              <li>Styled craft table setup</li>
+              <li>Interactive games and guided activities</li>
+              <li>Food and cake celebration setup</li>
+              <li>Birthday cake ceremony</li>
+              <li>Digital invitations included for easy sharing</li>
+              <li>Premium party bags</li>
+            </ul>
+          </div>
+          <div class="theme-full-cta">
+            <a href="index.html#book" class="btn btn-primary">Book This Party</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-full reverse">
+        <div class="theme-full-img">
+          <img src="image/party22.jpg" alt="Pet Adoption Party">
+        </div>
+        <div class="theme-full-body">
+          <div class="theme-full-icon">&#128059;</div>
+          <h3>Pet Adoption Party</h3>
+          <div class="theme-full-meta">
+            <span>Parisian Room</span>
+            <span>Up to 30 kids</span>
+          </div>
+          <p>A heartwarming and interactive kids role-play party experience in Sydney, where each child adopts and cares
+            for their own plush pet.</p>
+          <div class="theme-includes">
+            <h4>What's Included</h4>
+            <ul>
+              <li>Adoption station with certificates and name tags</li>
+              <li>Plush pet for each child to take home</li>
+              <li>Pet grooming and decorating activities</li>
+              <li>Customise accessories and styling</li>
+              <li>Decorate take-home carry bag</li>
+              <li>Beautifully styled activity tables</li>
+              <li>Guided games and interactive activities</li>
+              <li>Birthday cake celebration</li>
+            </ul>
+          </div>
+          <div class="theme-full-cta">
+            <a href="index.html#book" class="btn btn-primary">Book This Party</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-full">
+        <div class="theme-full-img">
+          <img src="image/party322.jpg" alt="G-Clay Craft Party">
+        </div>
+        <div class="theme-full-body">
+          <div class="theme-full-icon">&#129528;</div>
+          <h3>G-Clay Craft Party</h3>
+          <div class="theme-full-meta">
+            <span>Parisian Room</span>
+            <span>Up to 30 kids</span>
+          </div>
+          <p>A hands-on creative clay party experience in Gordon, perfect for artistic children.</p>
+          <div class="theme-includes">
+            <h4>What's Included</h4>
+            <ul>
+              <li>Guided sculpting experience with step-by-step instruction</li>
+              <li>Clay tools, materials and decorative elements</li>
+              <li>Aprons for all guests</li>
+              <li>Create and take home personalised artwork</li>
+              <li>Styled table setup</li>
+              <li>Interactive games</li>
+              <li>Food and cake celebration</li>
+              <li>Party bags</li>
+            </ul>
+          </div>
+          <div class="theme-full-cta">
+            <a href="index.html#book" class="btn btn-primary">Book This Party</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-full reverse">
+        <div class="theme-full-img">
+          <img src="image/party21.jpg" alt="Candle Art Party">
+        </div>
+        <div class="theme-full-body">
+          <div class="theme-full-icon">&#128367;&#65039;</div>
+          <h3>Candle Art Party</h3>
+          <div class="theme-full-meta">
+            <span>Parisian Room</span>
+            <span>Up to 30 kids</span>
+          </div>
+          <p>A creative and relaxing kids candle-making party in Sydney, where children design their own scented
+            keepsake.</p>
+          <div class="theme-includes">
+            <h4>What's Included</h4>
+            <ul>
+              <li>Candle-making materials and tools</li>
+              <li>Colour mixing and scent selection</li>
+              <li>Step-by-step guided instruction</li>
+              <li>Decorative packaging for take-home candles</li>
+              <li>Styled activity setup</li>
+              <li>Games and interactive activities</li>
+              <li>Food and cake celebration</li>
+              <li>Party bags</li>
+            </ul>
+          </div>
+          <div class="theme-full-cta">
+            <a href="index.html#book" class="btn btn-primary">Book This Party</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-full">
+        <div class="theme-full-img">
+          <img src="image/party (5).webp" alt="Mosaic Art Party">
+        </div>
+        <div class="theme-full-body">
+          <div class="theme-full-icon">&#129513;</div>
+          <h3>Mosaic Art Party</h3>
+          <div class="theme-full-meta">
+            <span>Parisian Room</span>
+            <span>Up to 30 kids</span>
+          </div>
+          <p>A calm and creative mosaic art birthday party in Gordon, ideal for children who enjoy detailed craft
+            activities.</p>
+          <div class="theme-includes">
+            <h4>What's Included</h4>
+            <ul>
+              <li>Mosaic design experience (vase or coaster)</li>
+              <li>Step-by-step guided instruction</li>
+              <li>Materials and tools provided</li>
+              <li>Take-home finished artwork</li>
+              <li>Styled table setup</li>
+              <li>Games and guided activities</li>
+              <li>Food and cake celebration</li>
+            </ul>
+          </div>
+          <div class="theme-full-cta">
+            <a href="index.html#book" class="btn btn-primary">Book This Party</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Disco Room  -->
+      <div class="room-label">
+        <h2>Disco Room</h2>
+        <p>High-energy venue with LED dance floor, dynamic lighting and stage area</p>
+      </div>
+
+      <div class="theme-full">
+        <div class="theme-full-img">
+          <img src="image/party33.png" alt="Disco Dance Party">
+        </div>
+        <div class="theme-full-body">
+          <div class="theme-full-icon">&#129689;</div>
+          <h3>Disco Dance Party</h3>
+          <div class="theme-full-meta">
+            <span>Disco Room</span>
+            <span>Up to 25 kids</span>
+          </div>
+          <p>A high-energy kids disco party in Gordon, perfect for children who love music, dancing and interactive fun.
+          </p>
+          <div class="theme-includes">
+            <h4>What's Included</h4>
+            <ul>
+              <li>LED interactive dance floor</li>
+              <li>Music, dance competitions and group games</li>
+              <li>Karaoke and performance activities</li>
+              <li>Disco accessories and props</li>
+              <li>Dance battles and team challenges</li>
+              <li>Fun prizes and interactive entertainment</li>
+              <li>Birthday cake celebration</li>
+              <li>Party bags</li>
+            </ul>
+          </div>
+          <div class="theme-full-cta">
+            <a href="index.html#book" class="btn btn-primary">Book This Party</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-full reverse">
+        <div class="theme-full-img">
+          <img src="image/party (7).webp" alt="Glow Party">
+        </div>
+        <div class="theme-full-body">
+          <div class="theme-full-icon">&#127752;</div>
+          <h3>Glow Party (LED & Neon)</h3>
+          <div class="theme-full-meta">
+            <span>Disco Room</span>
+            <span>Up to 25 kids</span>
+          </div>
+          <p>A vibrant glow-in-the-dark kids party in Sydney North Shore, combining neon lights, music and immersive
+            fun.</p>
+          <div class="theme-includes">
+            <h4>What's Included</h4>
+            <ul>
+              <li>Glow face and body paint</li>
+              <li>Neon party styling and decorations</li>
+              <li>LED glow accessories and light-up props</li>
+              <li>Interactive LED dance floor</li>
+              <li>Music, games and high-energy activities</li>
+              <li>Fun prizes and group interaction</li>
+              <li>Birthday cake ceremony</li>
+              <li>Party bags</li>
+            </ul>
+          </div>
+          <div class="theme-full-cta">
+            <a href="index.html#book" class="btn btn-primary">Book This Party</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-full">
+        <div class="theme-full-img">
+          <img src="image/party20.jpg" alt="Tiny Zoo Party">
+        </div>
+        <div class="theme-full-body">
+          <div class="theme-full-icon">&#128013;</div>
+          <h3>Tiny Zoo Party</h3>
+          <div class="theme-full-meta">
+            <span>Disco Room</span>
+            <span>Up to 25 kids</span>
+          </div>
+          <p>An exciting and educational wildlife party experience in Sydney North Shore, perfect for curious and
+            adventurous children. Animals may include: insects, frogs, turtles, lizards, python, crocodile and more.</p>
+          <div class="theme-includes">
+            <h4>What's Included</h4>
+            <ul>
+              <li>2 licensed wildlife keepers</li>
+              <li>1-hour interactive animal presentation</li>
+              <li>Hands-on animal encounters</li>
+              <li>Photo opportunities with selected animals</li>
+              <li>Birthday child participation experience</li>
+              <li>Q&A session with experts</li>
+              <li>Birthday cake ceremony</li>
+              <li>Party bags</li>
+            </ul>
+          </div>
+          <div class="theme-full-cta">
+            <a href="index.html#book" class="btn btn-primary">Book This Party</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-full reverse">
+        <div class="theme-full-img">
+          <img src="image/party (6).webp" alt="Magical Party">
+        </div>
+        <div class="theme-full-body">
+          <div class="theme-full-icon">&#127913;</div>
+          <h3>Magical Party</h3>
+          <div class="theme-full-meta">
+            <span>Disco Room</span>
+            <span>Up to 25 kids</span>
+          </div>
+          <p>A captivating kids magic party in Gordon, combining live performance, interactive fun and hands-on
+            learning.</p>
+          <div class="theme-includes">
+            <h4>What's Included</h4>
+            <ul>
+              <li>Professional magician performance</li>
+              <li>Interactive magic show with audience participation</li>
+              <li>Customised magic workshop (age-appropriate)</li>
+              <li>LED lighting and themed music for atmosphere</li>
+              <li>Fun games and guided activities</li>
+              <li>Styled table setup and food service</li>
+              <li>Birthday cake ceremony</li>
+              <li>Magic-themed party bags with props</li>
+            </ul>
+          </div>
+          <div class="theme-full-cta">
+            <a href="index.html#book" class="btn btn-primary">Book This Party</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-full">
+        <div class="theme-full-img">
+          <img src="image/party18.jpg" alt="Neon Paint Party">
+        </div>
+        <div class="theme-full-body">
+          <div class="theme-full-icon">&#127912;</div>
+          <h3>Neon Paint Party</h3>
+          <div class="theme-full-meta">
+            <span>Disco Room</span>
+            <span>Up to 25 kids</span>
+          </div>
+          <p>A vibrant and creative kids neon paint party in Gordon, combining glow-in-the-dark art, music and an
+            immersive party atmosphere.</p>
+          <div class="theme-includes">
+            <h4>What's Included</h4>
+            <ul>
+              <li>Glow-in-the-dark painting activity on canvas or creative surfaces</li>
+              <li>Professional art instructor guiding the experience step-by-step</li>
+              <li>A wide range of neon paints, brushes and decorating tools</li>
+              <li>UV lighting to enhance glowing visual effects</li>
+              <li>Stylish table setup for painting and celebration</li>
+              <li>Birthday cake ceremony</li>
+              <li>Party bags</li>
+            </ul>
+          </div>
+          <div class="theme-full-cta">
+            <a href="index.html#book" class="btn btn-primary">Book This Party</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Book CTA -->
+  <div class="parties-book-strip">
+    <h2>Ready to Celebrate?</h2>
+    <p>Every party is fully hosted — just drop off and enjoy the moment.</p>
+    <a href="index.html#book" class="btn">Book Your Party</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Funtasy Party Studio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    document.getElementById('mobileToggle').addEventListener('click', () => {
+      document.getElementById('nav').classList.toggle('active');
+      document.getElementById('mobileToggle').classList.toggle('active');
+    });
+
+    // Sticky header
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+
+</body>
+
+</html>

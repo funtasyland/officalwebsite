@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Funtasy Party Studio - Flyer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet">
+  <style>
+    @page {
+      size: 148mm 210mm;
+      margin: 0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0 auto;
+      font-family: 'Lato', sans-serif;
+      color: #2d2d2d;
+      background: #e0e0e0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 148mm;
+      height: 210mm;
+      margin: 5mm auto;
+      background: #fff;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .page { margin: 0; }
+    }
+
+    /* ======================================
+       FRONT SIDE
+    ====================================== */
+
+    .front-hero {
+      width: 100%;
+      height: 80mm;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .front-hero > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .front-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(45,30,20,0.7) 70%, rgba(45,30,20,0.85) 100%);
+      z-index: 1;
+    }
+
+    .front-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(193,154,107,0.2) 0%, transparent 50%, rgba(232,180,184,0.15) 100%);
+      z-index: 1;
+    }
+
+    .hero-wave {
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      z-index: 3;
+      height: 6mm;
+    }
+
+    .hero-wave svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .front-hero-content {
+      position: absolute;
+      bottom: 10mm;
+      left: 7mm;
+      right: 7mm;
+      z-index: 2;
+    }
+
+    .front-logo {
+      height: 14mm;
+      margin-bottom: 3mm;
+      filter: brightness(0) invert(1);
+    }
+
+    .front-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18pt;
+      color: #fff;
+      line-height: 1.25;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    .hero-divider {
+      width: 25mm;
+      height: 0.8px;
+      background: linear-gradient(90deg, #c19a6b, #e8b4b8, #c19a6b);
+      margin: 2.5mm 0;
+      border: none;
+    }
+
+    .front-hero p {
+      font-size: 8.5pt;
+      color: rgba(255,255,255,0.92);
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
+    /* Photo strip */
+    .photo-strip {
+      display: flex;
+      gap: 1.5mm;
+      padding: 3mm 4mm;
+    }
+
+    .photo-strip img {
+      flex: 1;
+      height: 26mm;
+      object-fit: cover;
+      border-radius: 2mm;
+    }
+
+    /* Packages */
+    .front-packages {
+      padding: 2mm 5mm 0;
+    }
+
+    .front-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 13pt;
+      text-align: center;
+      margin-bottom: 3mm;
+      color: #2d2d2d;
+    }
+
+    .front-section-title::after {
+      content: '';
+      display: block;
+      width: 20mm;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c19a6b, transparent);
+      margin: 1.5mm auto 0;
+    }
+
+    .pkgs-row {
+      display: flex;
+      gap: 2.5mm;
+    }
+
+    .pkg-mini {
+      flex: 1;
+      border: 0.5px solid #e8ddd3;
+      border-radius: 3mm;
+      padding: 3mm 2.5mm;
+      text-align: center;
+      background: #fff;
+      position: relative;
+    }
+
+    .pkg-mini.featured {
+      border-color: #c19a6b;
+      border-width: 1.2px;
+      background: linear-gradient(180deg, #fdfbf8 0%, #fff 100%);
+    }
+
+    .pkg-mini-badge {
+      position: absolute;
+      top: -2mm;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #c19a6b;
+      color: #fff;
+      font-size: 5.5pt;
+      font-weight: 700;
+      padding: 0.7mm 3mm;
+      border-radius: 2mm;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .pkg-mini h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 9pt;
+      margin-bottom: 0.5mm;
+    }
+
+    .pkg-mini .pkg-mini-sub {
+      font-size: 6pt;
+      color: #777;
+      margin-bottom: 1.5mm;
+    }
+
+    .pkg-mini .pkg-mini-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 13pt;
+      font-weight: 700;
+      color: #c19a6b;
+    }
+
+    .pkg-mini .pkg-mini-price span {
+      font-size: 6pt;
+      font-weight: 400;
+      color: #888;
+    }
+
+    .pkg-mini .pkg-mini-extra {
+      font-size: 5.5pt;
+      color: #999;
+      margin-top: 0.5mm;
+    }
+
+    /* Includes strip */
+    .includes-strip {
+      display: flex;
+      justify-content: center;
+      gap: 4mm;
+      padding: 4mm 5mm 3mm;
+      background: #faf7f4;
+      margin-top: 4mm;
+    }
+
+    .inc-item {
+      text-align: center;
+      font-size: 6pt;
+      color: #666;
+    }
+
+    .inc-item .inc-ico {
+      font-size: 12pt;
+      display: block;
+      margin-bottom: 0.5mm;
+    }
+
+    /* ---- Front footer ---- */
+    .front-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, #c19a6b 0%, #d4a87a 40%, #e8b4b8 100%);
+      padding: 5mm 6mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .front-footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 0.8px;
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.6), rgba(255,255,255,0));
+    }
+
+    .ff-info .ff-name {
+      font-family: 'Playfair Display', serif;
+      color: #fff;
+      font-size: 11pt;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 1mm;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .ff-info p {
+      color: rgba(255,255,255,0.9);
+      font-size: 7.5pt;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .ff-right {
+      display: flex;
+      align-items: center;
+      gap: 3mm;
+    }
+
+    .ff-scan-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 7pt;
+      color: #fff;
+      text-align: right;
+      line-height: 1.4;
+      opacity: 0.9;
+    }
+
+    .ff-qr {
+      width: 17mm;
+      height: 17mm;
+      background: #fff;
+      border-radius: 2mm;
+      padding: 1mm;
+      box-shadow: 0 0.5mm 2mm rgba(0,0,0,0.1);
+    }
+
+    .ff-qr img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* ======================================
+       BACK SIDE
+    ====================================== */
+
+    .back-header {
+      background: linear-gradient(135deg, #c19a6b 0%, #d4a87a 30%, #e8b4b8 60%, #c19a6b 100%);
+      padding: 7mm 6mm 6mm;
+      text-align: center;
+      position: relative;
+    }
+
+    .back-header::before {
+      content: '~ ~ ~';
+      position: absolute;
+      top: 2mm;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.3);
+      font-size: 7pt;
+      letter-spacing: 3px;
+    }
+
+    .back-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 4mm;
+      background: #fff;
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+
+    .back-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 15pt;
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.15);
+      letter-spacing: 0.5px;
+    }
+
+    .back-header-divider {
+      width: 20mm;
+      height: 0.6px;
+      background: rgba(255,255,255,0.5);
+      margin: 2mm auto;
+      border: none;
+    }
+
+    .back-header p {
+      font-size: 7.5pt;
+      color: rgba(255,255,255,0.92);
+      letter-spacing: 0.3px;
+    }
+
+    .back-body {
+      padding: 4mm 5mm;
+    }
+
+    /* Venue images */
+    .venue-imgs {
+      display: flex;
+      gap: 2mm;
+      margin-bottom: 4mm;
+    }
+
+    .venue-img-card {
+      flex: 1;
+      position: relative;
+      border-radius: 3mm;
+      overflow: hidden;
+      height: 32mm;
+    }
+
+    .venue-img-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .venue-img-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.6) 100%);
+    }
+
+    .venue-img-label {
+      position: absolute;
+      bottom: 2mm;
+      left: 3mm;
+      z-index: 2;
+      font-family: 'Playfair Display', serif;
+      font-size: 9pt;
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+
+    /* Themes */
+    .back-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 11pt;
+      text-align: center;
+      margin-bottom: 3mm;
+      color: #2d2d2d;
+    }
+
+    .back-section-title::after {
+      content: '';
+      display: block;
+      width: 20mm;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #c19a6b, transparent);
+      margin: 1.5mm auto 0;
+    }
+
+    .themes-cols {
+      display: flex;
+      gap: 4mm;
+      margin-bottom: 4mm;
+    }
+
+    .themes-col {
+      flex: 1;
+    }
+
+    .themes-col h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 8pt;
+      color: #c19a6b;
+      margin-bottom: 1.5mm;
+      padding-bottom: 1mm;
+      border-bottom: 0.5px solid #eee;
+    }
+
+    .themes-col .t-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5mm;
+    }
+
+    .t-tag {
+      font-size: 7pt;
+      background: #faf7f4;
+      color: #444;
+      padding: 1.2mm 3mm;
+      border-radius: 2mm;
+      border: 0.5px solid #e8ddd3;
+      white-space: nowrap;
+    }
+
+    /* Photo grid */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 24mm 24mm;
+      gap: 1.5mm;
+      margin-bottom: 4mm;
+    }
+
+    .photo-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 2mm;
+    }
+
+    .photo-grid img.span2 {
+      grid-column: span 2;
+    }
+
+    /* ---- Back footer ---- */
+    .back-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, #c19a6b 0%, #d4a87a 40%, #e8b4b8 100%);
+      padding: 5mm 6mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 0.8px;
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.6), rgba(255,255,255,0));
+    }
+
+    .bf-left {
+      color: rgba(255,255,255,0.9);
+      font-size: 7.5pt;
+      line-height: 1.7;
+    }
+
+    .bf-left strong {
+      font-family: 'Playfair Display', serif;
+      color: #fff;
+      font-size: 11pt;
+      display: block;
+      margin-bottom: 1mm;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .bf-right {
+      display: flex;
+      align-items: center;
+      gap: 3mm;
+    }
+
+    .bf-scan-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 7pt;
+      color: #fff;
+      text-align: right;
+      line-height: 1.4;
+      opacity: 0.9;
+    }
+
+    .bf-qr {
+      width: 17mm;
+      height: 17mm;
+      background: #fff;
+      border-radius: 2mm;
+      padding: 1mm;
+      box-shadow: 0 0.5mm 2mm rgba(0,0,0,0.1);
+    }
+
+    .bf-qr img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========== FRONT (Page 1) ========== -->
+  <div class="page">
+
+    <div class="front-hero">
+      <img src="image/party(8).webp" alt="Funtasy Party Studio">
+      <div class="front-hero-content">
+        <img src="logo.png" alt="Funtasy" class="front-logo">
+        <h1>Stress-Free Kids Parties<br>Fully Hosted for You</h1>
+        <hr class="hero-divider">
+        <p>Beautiful venues, creative themes and every detail handled.</p>
+      </div>
+      <div class="hero-wave">
+        <svg viewBox="0 0 500 30" preserveAspectRatio="none">
+          <path d="M0,20 C150,0 350,30 500,10 L500,30 L0,30 Z" fill="#fff"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="photo-strip">
+      <img src="image/room1.webp" alt="Parisian Room">
+      <img src="image/room2.webp" alt="Disco Room">
+      <img src="image/party (3).webp" alt="Cupcake party">
+      <img src="image/party (1).webp" alt="Craft party">
+    </div>
+
+    <div class="front-packages">
+      <h2 class="front-section-title">Party Packages</h2>
+      <div class="pkgs-row">
+        <div class="pkg-mini">
+          <h3>Signature</h3>
+          <div class="pkg-mini-sub">1 Room &middot; 1 Activity &middot; 2 Hrs</div>
+          <div class="pkg-mini-price">$1,150 <span>up to 12 kids</span></div>
+          <div class="pkg-mini-extra">+$85/extra child</div>
+        </div>
+        <div class="pkg-mini featured">
+          <div class="pkg-mini-badge">Most Popular</div>
+          <h3>Parisian Duo</h3>
+          <div class="pkg-mini-sub">Parisian Room &middot; 2 Activities &middot; 3 Hrs</div>
+          <div class="pkg-mini-price">$1,480 <span>up to 12 kids</span></div>
+          <div class="pkg-mini-extra">+$110/extra child</div>
+        </div>
+        <div class="pkg-mini">
+          <h3>Premium Dual</h3>
+          <div class="pkg-mini-sub">Both Rooms &middot; 2 Activities &middot; 3 Hrs</div>
+          <div class="pkg-mini-price">$1,880 <span>up to 12 kids</span></div>
+          <div class="pkg-mini-extra">+$135/extra child</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="includes-strip">
+      <div class="inc-item"><span class="inc-ico">&#127874;</span>Cake Ceremony</div>
+      <div class="inc-item"><span class="inc-ico">&#127860;</span>Food &amp; Drinks</div>
+      <div class="inc-item"><span class="inc-ico">&#127873;</span>Party Bags</div>
+      <div class="inc-item"><span class="inc-ico">&#127922;</span>Games &amp; Activities</div>
+      <div class="inc-item"><span class="inc-ico">&#128131;</span>Professional Hosts</div>
+      <div class="inc-item"><span class="inc-ico">&#127912;</span>Styled Setup</div>
+    </div>
+
+    <div class="front-footer">
+      <div class="ff-info">
+        <span class="ff-name">Funtasy Party Studio</span>
+        <p>15 Fitzsimons Lane, Gordon NSW 2072<br>
+          0422 989 075 &middot; funtasy.com.au</p>
+      </div>
+      <div class="ff-right">
+        <span class="ff-scan-label">Scan to<br>Book</span>
+        <div class="ff-qr">
+          <img src="image/qrcode.png" alt="Scan to visit">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ========== BACK (Page 2) ========== -->
+  <div class="page">
+
+    <div class="back-header">
+      <h2>Our Venues &amp; Themes</h2>
+      <hr class="back-header-divider">
+      <p>Two uniquely designed rooms for every kind of celebration</p>
+    </div>
+
+    <div class="back-body">
+
+      <div class="venue-imgs">
+        <div class="venue-img-card">
+          <img src="image/room1.webp" alt="Parisian Room">
+          <span class="venue-img-label">Parisian Room</span>
+        </div>
+        <div class="venue-img-card">
+          <img src="image/room2.webp" alt="Disco Room">
+          <span class="venue-img-label">Disco Room</span>
+        </div>
+      </div>
+
+      <h3 class="back-section-title">12 Party Themes</h3>
+      <div class="themes-cols">
+        <div class="themes-col">
+          <h4>Parisian Room</h4>
+          <div class="t-list">
+            <span class="t-tag">&#128134; Deluxe Spa</span>
+            <span class="t-tag">&#129473; Cupcake</span>
+            <span class="t-tag">&#129524; Gel Cream</span>
+            <span class="t-tag">&#128059; Pet Adoption</span>
+            <span class="t-tag">&#129528; G-Clay</span>
+            <span class="t-tag">&#128367;&#65039; Candle Art</span>
+            <span class="t-tag">&#129513; Mosaic Art</span>
+          </div>
+        </div>
+        <div class="themes-col">
+          <h4>Disco Room</h4>
+          <div class="t-list">
+            <span class="t-tag">&#129689; Disco Dance</span>
+            <span class="t-tag">&#127752; Glow Party</span>
+            <span class="t-tag">&#128013; Tiny Zoo</span>
+            <span class="t-tag">&#127913; Magic Show</span>
+            <span class="t-tag">&#127912; Neon Paint</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="photo-grid">
+        <img src="image/party(8).webp" alt="Spa party" class="span2">
+        <img src="image/party (6).webp" alt="Magic party">
+        <img src="image/party (4).webp" alt="Pet adoption">
+        <img src="image/party (5).webp" alt="Mosaic party" class="span2">
+      </div>
+
+    </div>
+
+    <div class="back-footer">
+      <div class="bf-left">
+        <strong>Funtasy Party Studio</strong>
+        15 Fitzsimons Lane, Gordon NSW 2072<br>
+        0422 989 075 &middot; funtasy.com.au
+      </div>
+      <div class="bf-right">
+        <span class="bf-scan-label">Scan to<br>Book</span>
+        <div class="bf-qr">
+          <img src="image/qrcode.png" alt="Scan to visit">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
