@@ -1,6 +1,11 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const path = require('path');
+const dns = require('dns');
+
+// Railway containers lack IPv6 egress; force IPv4 DNS resolution so SMTP
+// connections don't pick an unreachable AAAA record.
+dns.setDefaultResultOrder('ipv4first');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,6 +32,7 @@ const transporter = nodemailer.createTransport({
   port: SMTP_PORT,
   secure: false,
   requireTLS: true,
+  family: 4,
   auth: { user: SMTP_USER, pass: SMTP_PASS },
   connectionTimeout: 10000,
   greetingTimeout: 10000,
