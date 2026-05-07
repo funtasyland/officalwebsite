@@ -16,7 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // Email transporter
 const SMTP_HOST = process.env.SMTP_HOST || 'smtp.gmail.com';
-const SMTP_PORT = parseInt(process.env.SMTP_PORT || '587');
+// Default to 465 (implicit TLS) since Railway blocks outbound 587 on most plans.
+const SMTP_PORT = parseInt(process.env.SMTP_PORT || '465');
+const SMTP_SECURE = SMTP_PORT === 465;
 const SMTP_USER = process.env.SMTP_USER;
 const SMTP_PASS = process.env.SMTP_PASS;
 
@@ -30,8 +32,8 @@ console.log('[mail] SMTP config:', {
 const transporter = nodemailer.createTransport({
   host: SMTP_HOST,
   port: SMTP_PORT,
-  secure: false,
-  requireTLS: true,
+  secure: SMTP_SECURE,
+  requireTLS: !SMTP_SECURE,
   family: 4,
   auth: { user: SMTP_USER, pass: SMTP_PASS },
   connectionTimeout: 10000,
