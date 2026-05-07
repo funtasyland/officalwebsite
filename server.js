@@ -10,18 +10,33 @@ app.use(express.static(path.join(__dirname)));
 app.use(express.urlencoded({ extended: true }));
 
 // Email transporter
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || 'smtp-mail.outlook.com',
-  port: parseInt(process.env.SMTP_PORT || '587'),
-  secure: false,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS
-  }
+const SMTP_HOST = process.env.SMTP_HOST || 'smtp-mail.outlook.com';
+const SMTP_PORT = parseInt(process.env.SMTP_PORT || '587');
+const SMTP_USER = process.env.SMTP_USER;
+const SMTP_PASS = process.env.SMTP_PASS;
+
+console.log('[mail] SMTP config:', {
+  host: SMTP_HOST,
+  port: SMTP_PORT,
+  user: SMTP_USER ? SMTP_USER : '(MISSING)',
+  pass: SMTP_PASS ? `(set, length=${SMTP_PASS.length})` : '(MISSING)'
 });
+
+const transporter = nodemailer.createTransport({
+  host: SMTP_HOST,
+  port: SMTP_PORT,
+  secure: false,
+  auth: { user: SMTP_USER, pass: SMTP_PASS }
+});
+
+transporter.verify().then(
+  () => console.log('[mail] SMTP verify: OK'),
+  (err) => console.error('[mail] SMTP verify FAILED:', err && (err.code || err.message), err)
+);
 
 app.post('/send-email', async (req, res) => {
   const { name, phone, email, date, package: pkg, themes, message } = req.body;
+  console.log('[mail] /send-email hit, from:', email, 'name:', name);
 
   const body = [
     `Name: ${name}`,
@@ -34,17 +49,36 @@ app.post('/send-email', async (req, res) => {
   ].join('\n');
 
   try {
-    await transporter.sendMail({
-      from: `"Funtasy Website" <${process.env.SMTP_USER}>`,
+    if (!SMTP_USER || !SMTP_PASS) {
+      throw Object.assign(new Error('SMTP credentials missing on server'), { code: 'NO_CREDS' });
+    }
+    const info = await transporter.sendMail({
+      from: `"Funtasy Website" <${SMTP_USER}>`,
       to: 'funtasyland@hotmail.com',
       replyTo: email,
       subject: `Booking Request from ${name}`,
       text: body
     });
+    console.log('[mail] sent OK:', info.messageId, info.response);
     res.json({ success: true, message: 'Email sent successfully' });
   } catch (err) {
-    console.error('Email error:', err);
-    res.status(500).json({ success: false, message: 'Failed to send email' });
+    console.error('[mail] send error:', {
+      code: err.code,
+      command: err.command,
+      responseCode: err.responseCode,
+      response: err.response,
+      message: err.message
+    });
+    res.status(500).json({
+      success: false,
+      message: 'Failed to send email',
+      error: {
+        code: err.code || null,
+        responseCode: err.responseCode || null,
+        response: err.response || null,
+        message: err.message || null
+      }
+    });
   }
 });
 
