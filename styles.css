@@ -611,6 +611,55 @@ ul {
   border-radius: 50px;
 }
 
+/* Homepage overview: 4 concise summary cards linking to packages.html.
+   Compound selector keeps these ahead of the generic .packages-grid
+   responsive rule further down the file. */
+.packages-grid.packages-grid-summary {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-width: none;
+}
+
+.packages-grid-summary .package-card {
+  display: flex;
+  flex-direction: column;
+  padding: 36px 24px;
+}
+
+.packages-grid-summary .package-header {
+  flex: 1;
+}
+
+.packages-grid-summary .price {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.packages-grid-summary .price-extra {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.packages-cta {
+  text-align: center;
+  margin-top: 40px;
+}
+
+@media (max-width: 1024px) {
+  .packages-grid.packages-grid-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 620px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .packages-grid.packages-grid-summary {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+  }
+}
+
 .package-header h3 {
   font-family: var(--font-heading);
   font-size: 1.3rem;
