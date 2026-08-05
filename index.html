@@ -248,8 +248,8 @@
           <div class="package-header">
             <h3>Signature Package</h3>
             <div class="package-subtitle">1 Room · 1 Party Activity · 2 Hours</div>
-            <div class="price">$1,150<span> up to 12 kids</span></div>
-            <div class="price-extra">Additional guests: $95/child</div>
+            <div class="price"><span class="price-from">from</span> $1,150<span> up to 12 kids</span></div>
+            <div class="price-extra">Additional guests: from $95/child</div>
             <div class="price-extra">*Plus GST</div>
           </div>
           <ul class="package-features">
@@ -262,15 +262,15 @@
             <li>Party bags for all guests</li>
             <li>Fully hosted & stress-free</li>
           </ul>
-          <button class="btn btn-secondary" onclick="openThemeModal('standard')">View our parties</button>
+          <a href="parties.html" class="btn btn-secondary">View our parties</a>
         </div>
         <div class="package-card featured">
           <div class="package-badge">Most Popular</div>
           <div class="package-header">
             <h3>Parisian Duo Package</h3>
             <div class="package-subtitle">Parisian Room · 2 Party Activities · 3 Hours</div>
-            <div class="price">$1,480<span> up to 12 kids</span></div>
-            <div class="price-extra">Additional guests: $120/child</div>
+            <div class="price">$1,550<span> up to 12 kids</span></div>
+            <div class="price-extra">Additional guests: $125/child</div>
             <div class="price-extra">*Plus GST</div>
           </div>
           <ul class="package-features">
@@ -284,7 +284,7 @@
             <li>Fully hosted & stress-free</li>
 
           </ul>
-          <button class="btn btn-primary" onclick="openThemeModal('ultimate')">View our parties</button>
+          <a href="parties.html" class="btn btn-primary">View our parties</a>
         </div>
         <div class="package-card">
           <div class="package-header">
@@ -304,7 +304,7 @@
             <li>Party bags for all guests</li>
             <li>Fully hosted & stress-free</li>
           </ul>
-          <button class="btn btn-secondary" onclick="openThemeModal('premium')">View our parties</button>
+          <a href="parties.html" class="btn btn-secondary">View our parties</a>
         </div>
       </div>
     </div>
@@ -566,9 +566,9 @@
               <label for="package">Package</label>
               <select id="package" name="package" required onchange="onPackageChange()">
                 <option value="">Select a package...</option>
-                <option value="standard">Signature ($1,150 up to 12 kids)</option>
-                <option value="ultimate">Parisian Duo ($1,450 up to 12 kids)</option>
-                <option value="premium">Premium Dual-Room ($1,850 up to 12 kids)</option>
+                <option value="standard">Signature</option>
+                <option value="ultimate">Parisian Duo</option>
+                <option value="premium">Premium Dual-Room</option>
                 <option value="outside">Outside Venue Party Option</option>
               </select>
             </div>

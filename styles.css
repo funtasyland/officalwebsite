@@ -645,6 +645,12 @@ ul {
   color: var(--color-text-light);
 }
 
+.price span.price-from {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-primary-dark);
+}
+
 .package-features {
   margin-bottom: 32px;
 }
